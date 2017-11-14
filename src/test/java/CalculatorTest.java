@@ -12,6 +12,8 @@ public class CalculatorTest {
     @BeforeClass
     public static void start()
     {
+        //ChromeDriverManager.getInstance().setup();
+
         System.setProperty("webdriver.chrome.driver", "C:\\Driver\\chromedriver.exe");
         driver = new ChromeDriver();
         driver.get("file:///C:/Users/Dima/Desktop/Training_center/Auto/calc.html");
