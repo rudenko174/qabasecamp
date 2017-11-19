@@ -1,4 +1,5 @@
 import org.junit.*;
+import java.io.File;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -8,7 +9,6 @@ public class CalculatorTest {
 
     private static WebDriver driver;
 
-
     @BeforeClass
     public static void start()
     {
@@ -16,12 +16,18 @@ public class CalculatorTest {
 
         System.setProperty("webdriver.chrome.driver", "C:\\Driver\\chromedriver.exe");
         driver = new ChromeDriver();
-        driver.get("file:///C:/Users/Dima/Desktop/Training_center/Auto/calc.html");
+
     }
 
     @Before
     public void cleanup()
     {
+        ClassLoader classLoader = getClass().getClassLoader();
+        File file = new File(classLoader.getResource("calc.html").getFile());
+        driver.get("file:///" + file.getAbsolutePath());
+
+        //driver.get("file:///C:/Users/Dima/Desktop/Training_center/Auto/calc.html");
+
         driver.findElement(By.xpath("//input[@value='C']")).click();
     }
 
@@ -71,7 +77,6 @@ public class CalculatorTest {
     @After
     public void stop()
     {
-
     }
 
 }
